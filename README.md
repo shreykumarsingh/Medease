@@ -31,6 +31,7 @@ This is a webapp where you can book an appointment with a doctor.
 <li>User will recieve notification if their application is accepted or rejected.</li>
 <li>User and Doctor will recieve notification if their appointment is completed.</li>
 <li>Doctor will recieve notification if someone booked appointment with them.</li>
+<li>Real-time notifications are delivered via Kafka and Socket.IO.</li>
 <li>All the data will be stored on the database so there is no chance of losing you information.</li>
 </ul>
 
