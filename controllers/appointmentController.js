@@ -66,22 +66,23 @@ const bookappointment = async (req, res) => {
 
 const completed = async (req, res) => {
   try {
-    await Appointment.findOneAndUpdate(
-      { _id: req.body.appointid },
-      { status: "Completed" }
+    const appointment = await Appointment.findByIdAndUpdate(
+      req.body.appointid,
+      { status: "Completed" },
+      { new: true }
     );
 
-    // Send notification to user asynchronously via Kafka
+    // Notify the patient asynchronously via Kafka
     await sendNotificationToKafka({
-      userId: req.locals,
+      userId: appointment.userId,
       content: `Your appointment with ${req.body.doctorname} has been completed`,
     });
 
-    const user = await User.findById(req.locals);
+    const user = await User.findById(appointment.userId);
 
-    // Send notification to doctor asynchronously via Kafka
+    // Notify the doctor asynchronously via Kafka
     await sendNotificationToKafka({
-      userId: req.body.doctorId,
+      userId: appointment.doctorId,
       content: `Your appointment with ${user.firstname} ${user.lastname} has been completed`,
     });
 
