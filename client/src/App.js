@@ -1,5 +1,5 @@
 import "./styles/app.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Toaster } from "react-hot-toast";
@@ -17,17 +17,13 @@ const Notifications = lazy(() => import("./pages/Notifications"));
 const ApplyDoctor = lazy(() => import("./pages/ApplyDoctor"));
 const Error = lazy(() => import("./pages/Error"));
 
-
 function App() {
   return (
-    <Router>
+    <>
       <Toaster />
       <Suspense fallback={<Loading />}>
         <Routes>
-          <Route
-            path="/login"
-            element={<Login />}
-          />
+          <Route path="/login" element={<Login />} />
           <Route
             path="/register"
             element={
@@ -36,14 +32,8 @@ function App() {
               </Public>
             }
           />
-          <Route
-            path="/"
-            element={<Home />}
-          />
-          <Route
-            path="/doctors"
-            element={<Doctors />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/doctors" element={<Doctors />} />
           <Route
             path="/appointments"
             element={
@@ -108,14 +98,11 @@ function App() {
               </Protected>
             }
           />
-          <Route
-            path="*"
-            element={<Error />}
-          />
+          <Route path="*" element={<Error />} />
           <Route path="/room/:roomId" element={<RoomPage />} />
         </Routes>
       </Suspense>
-    </Router>
+    </>
   );
 }
 
