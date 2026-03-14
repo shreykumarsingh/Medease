@@ -9,7 +9,7 @@
     "client": "npm start --prefix ./client ",
     "dev": "concurrently \"npm start\" \"npm run client\""
   },
-  "author": "Aditya",
+  "author": "Shrey Kumar Singh",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.5",
